@@ -1,0 +1,80 @@
+<div class="container">
+  <div class="row">
+    <h1>List of candidates</h1>
+  </div>
+</div>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="inputAdd--hidden divForm__margin" [ngClass]="{'inputAdd--visible' : updateEnable === true}">
+      <div class="inputChange--float">
+        <label for="name">Name:</label>
+          <input type="text" name="name" #updateName [value]="selectedPerson?.name" />
+      </div>
+      <div class="inputChange--float">
+        <label for="city">City: </label>
+          <input type="text" name="city" #updateCity [value]="selectedPerson?.city" />
+      </div>
+      <div class="inputChange--float">
+        <label for="mail">Email: </label>
+          <input type="text" name="mail" #updateMail [value]="selectedPerson?.mail" />
+      </div>
+      <div class="inputChange--float">
+      <button type="button" class="btn buttonUpdate__background" (click)="updatePerson(updateName.value, updateCity.value, updateMail.value)">Update</button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <form class="divForm__margin" [formGroup]="personForm" (ngSubmit)="createPerson(newName.value, newCity.value, newMail.value)"> 
+      <div class="inputAdd--hidden" [ngClass]="{'inputAdd--visible' : addPerson === true}">
+        <div class="inputChange--float">
+          <label for="name">Name:</label>
+            <input type="text" name="name" #newName [formControl]="personForm.controls['name']" />
+        </div>
+        <div class="inputChange--float">
+          <label for="city">City: </label>
+            <input type="text" name="city" #newCity [formControl]="personForm.controls['city']" />
+        </div>
+        <div class="inputChange--float">
+          <label for="mail">Email: </label>
+            <input type="email" name="emailAddress" placeholder="test@test.com" #newMail [formControl]="personForm.controls['mail']" />
+        </div>
+        <div class="inputChange--float">
+          <button class="btn btn-primary" type="submit" [disabled]="!personForm.valid">Add Person</button>
+        </div>
+      </div>
+      <div *ngIf="personForm.controls['name'].hasError('required') && personForm.controls['name'].dirty" class="alert alert-danger inputChange--float">Name is required!</div>
+      <div *ngIf="personForm.controls['city'].hasError('required') && personForm.controls['city'].dirty" class="alert alert-danger inputChange--float">City name is required!</div>
+      <div *ngIf="personForm.controls['mail'].hasError('required') && personForm.controls['mail'].dirty" class="alert alert-danger inputChange--float">Email is required!</div>
+      <div *ngIf="personForm.controls['mail'].hasError('pattern')" class="alert alert-danger inputChange--float">Email pattern is incorrect!</div>
+    </form>
+    <button class="btn btn-primary btnShowAddPerson" [ngClass]="{'inputAdd--hidden' : addPerson === true}" type="button" (click)="showAddPerson()">Add Person</button>
+    <div class="btnAfterSuccess" *ngIf="afterSuccess==true">
+      Candidate added successfully.
+    </div>
+  </div>
+  <div class="row">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>City</th>
+          <th>E-mail</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor='let person of persons'>
+          <th scope="row">{{person.id}}</th>
+          <td>{{person.name}}</td>
+          <td>{{person.city}}</td>
+          <td>{{person.mail}}</td>
+          <td><button type="button" class="btn buttonUpdate__background" (click)="loadDetails(person)">Update</button></td>
+          <td><div class="buttonDelete__background" (click)="deletePerson(person.id, person.name)"><span class="buttonDelete">X</span></div></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

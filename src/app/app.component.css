@@ -1,0 +1,105 @@
+form {
+    z-index: 1;
+}
+input {
+    border: 1px solid #000000;
+}
+label {
+    margin-left: 25px;
+}
+@media screen and (max-width: 1000px) {
+    label {
+        width: 18%;
+    }
+}
+
+/*button edit*/
+.btn {
+    cursor: pointer;
+}
+.btn[disabled] {
+    cursor: no-drop;
+}
+.btnShowAddPerson {
+    position: absolute;
+    margin-top: -25px;
+}
+.btnAfterSuccess:before {
+    content: url('../assets/img/ok.png');
+}
+.btnAfterSuccess {
+    position: absolute;
+    width: 100%;
+    margin-left: 150px;
+    margin-top: -15px;
+    color: #729800;
+}
+
+/*add inputs*/
+.inputAdd--hidden {
+    opacity: 0;
+    height: 0;
+    -webkit-transition: all 1s ease;    
+    transition: all 1s ease;
+}
+.inputAdd--visible{
+    -webkit-transition: all 1s ease;    
+    transition: all 1s ease;
+    opacity: 1;
+    height: auto;
+}
+
+/*forms edit*/
+.inputChange--float .ng-valid  {
+    -webkit-transition: border 0.5s linear;    
+    transition: border 0.5s linear;
+    border-bottom: 5px solid #42A948;
+}
+
+.inputChange--float .ng-invalid:not(form)  {
+    -webkit-transition: border 0.5s linear;    
+    transition: border 0.5s linear;
+    border-bottom: 5px solid #a94442;
+}
+.divForm__margin {
+    margin-bottom: 20px;
+}
+@media screen and (min-width: 1000px) {
+    .inputChange--float {
+        float: left;
+    }
+}
+
+
+/*button update*/
+.buttonUpdate__background {
+    color: #ffffff;
+    background-color: #da9d15;
+    transition: background-color 0.5s, box-shadow 0.5s;
+    -webkit-transition: background-color 0.5s, box-shadow 0.5s;
+}
+.buttonUpdate__background:hover {
+    box-shadow: 2px 2px 5px #888888;
+    background-color: #f5c353;
+}
+
+/*button delete*/
+.buttonDelete__background {
+    width: 40px;
+    height: 40px;
+    padding: 5px 0px 0px 2px;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #ff0000;
+    transition: background-color 0.5s, box-shadow 0.5s;
+    -webkit-transition: background-color 0.5s, box-shadow 0.5s;
+    cursor: pointer;
+}
+.buttonDelete__background:hover {
+    box-shadow: 2px 2px 5px #888888;
+    background-color: #f97171;
+}
+.buttonDelete {
+    font-size: 20px;
+    color: #ffffff;
+}
